@@ -10,8 +10,9 @@
         }
     ],
     "require": {
-        "php": "^7.3 || ^8.0",
-        "friendsofphp/php-cs-fixer": "^3.2"
+        "php": "^8.1",
+        "friendsofphp/php-cs-fixer": "^3.13.2",
+        "kubawerlos/php-cs-fixer-custom-fixers": "^3.11.3"
     },
     "autoload": {
         "psr-4": {

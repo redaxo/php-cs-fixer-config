@@ -5,81 +5,110 @@ declare(strict_types=1);
 namespace Redaxo\PhpCsFixerConfig;
 
 use PhpCsFixer\ConfigInterface;
-use PhpCsFixer\Fixer\Import\OrderedImportsFixer;
+use PhpCsFixerCustomFixers\Fixer\ConstructorEmptyBracesFixer;
+use PhpCsFixerCustomFixers\Fixer\MultilinePromotedPropertiesFixer;
+use PhpCsFixerCustomFixers\Fixers;
+use Redaxo\PhpCsFixerConfig\Fixer\StatementIndentationFixer;
 
 class Config extends \PhpCsFixer\Config
 {
-    private const REDAXO_RULES = [
-        '@Symfony' => true,
-        '@Symfony:risky' => true,
-        '@PHP73Migration' => true,
-        '@PHP71Migration:risky' => true,
-        '@PHPUnit84Migration:risky' => true,
-        'array_indentation' => true,
-        'blank_line_before_statement' => false,
-        'braces' => ['allow_single_line_closure' => false],
-        'comment_to_phpdoc' => true,
-        'concat_space' => false,
-        'declare_strict_types' => false,
-        'echo_tag_syntax' => false,
-        'empty_loop_condition' => false,
-        'global_namespace_import' => [
-            'import_constants' => true,
-            'import_functions' => true,
-            'import_classes' => true,
-        ],
-        'heredoc_to_nowdoc' => true,
-        'list_syntax' => ['syntax' => 'short'],
-        'method_argument_space' => ['on_multiline' => 'ignore'],
-        'native_constant_invocation' => false,
-        'no_alternative_syntax' => false,
-        'no_blank_lines_after_phpdoc' => false,
-        'no_null_property_initialization' => true,
-        'no_superfluous_elseif' => true,
-        'no_unreachable_default_argument_value' => true,
-        'no_useless_else' => true,
-        'no_useless_return' => true,
-        'ordered_class_elements' => ['order' => [
-            'use_trait',
-            'constant_public',
-            'constant_protected',
-            'constant_private',
-            'property',
-            'construct',
-            'phpunit',
-            'method',
-        ]],
-        'ordered_imports' => ['imports_order' => [
-            OrderedImportsFixer::IMPORT_TYPE_CLASS,
-            OrderedImportsFixer::IMPORT_TYPE_CONST,
-            OrderedImportsFixer::IMPORT_TYPE_FUNCTION,
-        ]],
-        'php_unit_internal_class' => true,
-        'php_unit_test_case_static_method_calls' => true,
-        'phpdoc_align' => false,
-        'phpdoc_no_package' => false,
-        'phpdoc_order' => true,
-        'phpdoc_separation' => false,
-        'phpdoc_to_comment' => false,
-        'phpdoc_types_order' => false,
-        'phpdoc_var_annotation_correct_order' => true,
-        'psr_autoloading' => false,
-        'semicolon_after_instruction' => false,
-        'static_lambda' => true,
-        'void_return' => false,
-    ];
-
-    public function __construct(string $name = 'default')
+    public function __construct(string $name = 'REDAXO')
     {
         parent::__construct($name);
 
         $this->setUsingCache(true);
         $this->setRiskyAllowed(true);
+        $this->registerCustomFixers(new Fixers());
+        $this->registerCustomFixers([new StatementIndentationFixer()]);
         $this->setRules([]);
     }
 
     public function setRules(array $rules): ConfigInterface
     {
-        return parent::setRules(array_merge(self::REDAXO_RULES, $rules));
+        $default = [
+            '@Symfony' => true,
+            '@Symfony:risky' => true,
+            '@PHP81Migration' => true,
+            '@PHP80Migration:risky' => true,
+            '@PHPUnit84Migration:risky' => true,
+
+            'align_multiline_comment' => true,
+            'array_indentation' => true,
+            'blank_line_before_statement' => false,
+            'braces' => false,
+            'comment_to_phpdoc' => true,
+            'compact_nullable_typehint' => true,
+            'concat_space' => false,
+            'control_structure_braces' => true,
+            'control_structure_continuation_position' => true,
+            'curly_braces_position' => [
+                'allow_single_line_anonymous_functions' => false,
+            ],
+            'declare_parentheses' => true,
+            'declare_strict_types' => false,
+            'echo_tag_syntax' => false,
+            'empty_loop_condition' => false,
+            'escape_implicit_backslashes' => true,
+            'global_namespace_import' => [
+                'import_constants' => true,
+                'import_functions' => true,
+                'import_classes' => true,
+            ],
+            'heredoc_to_nowdoc' => true,
+            'list_syntax' => ['syntax' => 'short'],
+            'method_argument_space' => ['on_multiline' => 'ignore'],
+            'multiline_comment_opening_closing' => true,
+            'native_constant_invocation' => false,
+            'no_alternative_syntax' => false,
+            'no_blank_lines_after_phpdoc' => false,
+            'no_extra_blank_lines' => true,
+            'no_multiple_statements_per_line' => true,
+            'no_null_property_initialization' => true,
+            'no_superfluous_elseif' => true,
+            'no_unreachable_default_argument_value' => true,
+            'no_useless_else' => true,
+            'no_useless_return' => true,
+            'ordered_class_elements' => ['order' => [
+                'use_trait',
+                'constant_public',
+                'constant_protected',
+                'constant_private',
+                'property',
+                'construct',
+                'phpunit',
+                'method',
+            ]],
+            'ordered_imports' => ['imports_order' => [
+                'class',
+                'function',
+                'const',
+            ]],
+            'php_unit_internal_class' => true,
+            'php_unit_test_case_static_method_calls' => true,
+            'phpdoc_align' => false,
+            'phpdoc_no_package' => false,
+            'phpdoc_order' => true,
+            'phpdoc_separation' => false,
+            'phpdoc_to_comment' => false,
+            'phpdoc_types_order' => false,
+            'phpdoc_var_annotation_correct_order' => true,
+            'psr_autoloading' => false,
+            'semicolon_after_instruction' => false,
+            'single_space_after_construct' => true,
+            'static_lambda' => true,
+            'trailing_comma_in_multiline' => [
+                'after_heredoc' => true,
+                'elements' => ['arguments', 'arrays', 'match', 'parameters'],
+            ],
+            'use_arrow_functions' => false,
+            'void_return' => false,
+
+            ConstructorEmptyBracesFixer::name() => true,
+            MultilinePromotedPropertiesFixer::name() => true,
+
+            'Redaxo/statement_indentation' => true,
+        ];
+
+        return parent::setRules(array_merge($default, $rules));
     }
 }

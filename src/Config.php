@@ -104,7 +104,7 @@ class Config extends \PhpCsFixer\Config
             'void_return' => false,
 
             ConstructorEmptyBracesFixer::name() => true,
-            MultilinePromotedPropertiesFixer::name() => true,
+            MultilinePromotedPropertiesFixer::name() => ['keep_blank_lines' => true],
 
             'Redaxo/statement_indentation' => true,
         ];

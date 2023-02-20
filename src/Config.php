@@ -47,7 +47,7 @@ class Config extends \PhpCsFixer\Config
             ],
             'declare_parentheses' => true,
             'declare_strict_types' => false,
-            'echo_tag_syntax' => false,
+            'echo_tag_syntax' => ['format' => 'short'],
             'empty_loop_condition' => false,
             'escape_implicit_backslashes' => true,
             'global_namespace_import' => [

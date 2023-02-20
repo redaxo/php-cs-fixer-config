@@ -9,6 +9,7 @@ use PhpCsFixerCustomFixers\Fixer\ConstructorEmptyBracesFixer;
 use PhpCsFixerCustomFixers\Fixer\MultilinePromotedPropertiesFixer;
 use PhpCsFixerCustomFixers\Fixer\PhpdocSingleLineVarFixer;
 use PhpCsFixerCustomFixers\Fixers;
+use Redaxo\PhpCsFixerConfig\Fixer\NoSemicolonBeforeClosingTagFixer;
 use Redaxo\PhpCsFixerConfig\Fixer\StatementIndentationFixer;
 
 class Config extends \PhpCsFixer\Config
@@ -20,7 +21,10 @@ class Config extends \PhpCsFixer\Config
         $this->setUsingCache(true);
         $this->setRiskyAllowed(true);
         $this->registerCustomFixers(new Fixers());
-        $this->registerCustomFixers([new StatementIndentationFixer()]);
+        $this->registerCustomFixers([
+            new NoSemicolonBeforeClosingTagFixer(),
+            new StatementIndentationFixer(),
+        ]);
         $this->setRules([]);
     }
 
@@ -108,6 +112,7 @@ class Config extends \PhpCsFixer\Config
             MultilinePromotedPropertiesFixer::name() => ['keep_blank_lines' => true],
             PhpdocSingleLineVarFixer::name() => true,
 
+            'Redaxo/no_semicolon_before_closing_tag' => true,
             'Redaxo/statement_indentation' => true,
         ];
 

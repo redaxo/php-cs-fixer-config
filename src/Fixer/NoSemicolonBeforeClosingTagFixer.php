@@ -23,7 +23,7 @@ final class NoSemicolonBeforeClosingTagFixer extends AbstractFixer
     public function getDefinition(): FixerDefinitionInterface
     {
         return new FixerDefinition(
-            'Single instructions inside PHP tags must ommit the semicolon.',
+            'Single instructions inside PHP tags must omit the semicolon.',
             [new CodeSample("<?php foo(); ?>\n")],
         );
     }

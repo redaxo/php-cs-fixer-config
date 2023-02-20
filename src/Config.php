@@ -7,6 +7,7 @@ namespace Redaxo\PhpCsFixerConfig;
 use PhpCsFixer\ConfigInterface;
 use PhpCsFixerCustomFixers\Fixer\ConstructorEmptyBracesFixer;
 use PhpCsFixerCustomFixers\Fixer\MultilinePromotedPropertiesFixer;
+use PhpCsFixerCustomFixers\Fixer\PhpdocSingleLineVarFixer;
 use PhpCsFixerCustomFixers\Fixers;
 use Redaxo\PhpCsFixerConfig\Fixer\StatementIndentationFixer;
 
@@ -105,6 +106,7 @@ class Config extends \PhpCsFixer\Config
 
             ConstructorEmptyBracesFixer::name() => true,
             MultilinePromotedPropertiesFixer::name() => ['keep_blank_lines' => true],
+            PhpdocSingleLineVarFixer::name() => true,
 
             'Redaxo/statement_indentation' => true,
         ];

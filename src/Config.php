@@ -75,6 +75,7 @@ class Config extends \PhpCsFixer\Config
             'no_useless_return' => true,
             'ordered_class_elements' => ['order' => [
                 'use_trait',
+                'case',
                 'constant_public',
                 'constant_protected',
                 'constant_private',

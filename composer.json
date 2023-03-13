@@ -2,6 +2,12 @@
     "name": "redaxo/php-cs-fixer-config",
     "description": "php-cs-fixer config for REDAXO",
     "type": "library",
+    "keywords": [
+        "fixer",
+        "standards",
+        "static analysis",
+        "static code analysis"
+    ],
     "license": "MIT",
     "authors": [
         {

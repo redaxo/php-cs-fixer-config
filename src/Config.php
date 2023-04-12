@@ -40,7 +40,6 @@ class Config extends \PhpCsFixer\Config
             'align_multiline_comment' => true,
             'array_indentation' => true,
             'blank_line_before_statement' => false,
-            'braces' => false,
             'comment_to_phpdoc' => true,
             'compact_nullable_typehint' => true,
             'concat_space' => false,
@@ -100,7 +99,8 @@ class Config extends \PhpCsFixer\Config
             'phpdoc_var_annotation_correct_order' => true,
             'psr_autoloading' => false,
             'semicolon_after_instruction' => false,
-            'single_space_after_construct' => true,
+            'single_space_around_construct' => true,
+            'statement_indentation' => false,
             'static_lambda' => true,
             'trailing_comma_in_multiline' => [
                 'after_heredoc' => true,

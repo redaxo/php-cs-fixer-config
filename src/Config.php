@@ -69,9 +69,15 @@ class Config extends \PhpCsFixer\Config
             'no_multiple_statements_per_line' => true,
             'no_null_property_initialization' => true,
             'no_superfluous_elseif' => true,
+            'no_superfluous_phpdoc_tags' => [
+                'allow_mixed' => true,
+                'remove_inheritdoc' => true,
+            ],
             'no_unreachable_default_argument_value' => true,
             'no_useless_else' => true,
             'no_useless_return' => true,
+            'nullable_type_declaration_for_default_null_value' => true,
+            'operator_linebreak' => false,
             'ordered_class_elements' => ['order' => [
                 'use_trait',
                 'case',

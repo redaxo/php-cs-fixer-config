@@ -42,7 +42,7 @@ class Config extends \PhpCsFixer\Config
             'blank_line_before_statement' => false,
             'comment_to_phpdoc' => true,
             'compact_nullable_typehint' => true,
-            'concat_space' => false,
+            'concat_space' => ['spacing' => 'one'],
             'control_structure_braces' => true,
             'control_structure_continuation_position' => true,
             'curly_braces_position' => [

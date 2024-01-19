@@ -91,6 +91,7 @@ class Config extends \PhpCsFixer\Config
             'phpdoc_var_annotation_correct_order' => true,
             'psr_autoloading' => false,
             'semicolon_after_instruction' => false,
+            'single_line_empty_body' => true,
             'statement_indentation' => false,
             'static_lambda' => true,
             'trailing_comma_in_multiline' => [

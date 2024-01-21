@@ -53,4 +53,4 @@ jobs:
           composer-options: "--prefer-dist --no-progress --with-all-dependencies"
 
       - name: run php-cs-fixer (dry-run)
-        run: php-cs-fixer fix -v --ansi --dry-run
+        run: vendor/bin/php-cs-fixer fix -v --ansi --dry-run

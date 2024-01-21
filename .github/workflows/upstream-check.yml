@@ -20,8 +20,6 @@ jobs:
         repo:
           - 'redaxo/redaxo'
           - 'yakamara/yform'
-          - 'yakamara/redaxo_yrewrite'
-          - 'yakamara/ycom'
 
     if: github.event.pull_request.draft == false
     steps:

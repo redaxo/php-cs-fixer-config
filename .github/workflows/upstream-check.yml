@@ -40,9 +40,16 @@ jobs:
         run: composer require redaxo/php-cs-fixer-config:dev-${{ github.head_ref }} --no-scripts --no-update
 
       - uses: "ramsey/composer-install@v2"
+        if: hashFiles('composer.lock') != ''
         with:
           dependency-versions: "highest" # to trigger "composer update" instead of "composer install" but limited to redaxo/php-cs-fixer-config updates only
           composer-options: "redaxo/php-cs-fixer-config --prefer-dist --no-progress --with-all-dependencies"
+
+      - uses: "ramsey/composer-install@v2"
+        if: hashFiles('composer.lock') == ''
+        with:
+          dependency-versions: "highest" # to trigger "composer update"
+          composer-options: "--prefer-dist --no-progress --with-all-dependencies"
 
       - name: run php-cs-fixer (dry-run)
         run: php-cs-fixer fix -v --ansi --dry-run

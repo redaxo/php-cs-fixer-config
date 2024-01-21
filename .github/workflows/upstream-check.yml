@@ -35,7 +35,10 @@ jobs:
           coverage: none
 
       - name: set redaxo/php-cs-fixer-config to current branch
-        run: composer require redaxo/php-cs-fixer-config:dev-${{ github.head_ref }} --no-scripts --no-update
+        run: composer require redaxo/php-cs-fixer-config:dev-${{ github.head_ref }} --no-scripts --no-update --dev
+
+      - name: allow php-cs-fixer version required by redaxo/php-cs-fixer-config
+        run: composer require friendsofphp/php-cs-fixer:\* --no-scripts --no-update --dev
 
       - uses: "ramsey/composer-install@v2"
         if: hashFiles('composer.lock') != ''

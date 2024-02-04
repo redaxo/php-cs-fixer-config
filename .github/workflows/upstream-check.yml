@@ -1,56 +1,55 @@
 name: Upstream
 
 on:
-  pull_request:
-    types: [ opened, synchronize, reopened, ready_for_review ]
+    pull_request:
+        types: [ opened, synchronize, reopened, ready_for_review ]
 
 jobs:
-  upstream_run:
-    name: ${{ matrix.repo }} (dry-run)
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
+    upstream_run:
+        name: ${{ matrix.repo }}
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
 
-    concurrency:
-      group: upstream-check-${{github.event_name}}-${{ matrix.repo }}-${{ github.head_ref || github.run_id }}
-      cancel-in-progress: true
+        concurrency:
+            group: upstream-check-${{github.event_name}}-${{ matrix.repo }}-${{ github.head_ref || github.run_id }}
+            cancel-in-progress: true
 
-    strategy:
-      fail-fast: false
-      matrix:
-        repo:
-          - 'redaxo/redaxo'
-          - 'yakamara/yform'
+        strategy:
+            fail-fast: false
+            matrix:
+                repo:
+                    - 'redaxo/redaxo'
+                    - 'yakamara/yform'
 
-    if: github.event.pull_request.draft == false
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          repository: ${{ matrix.repo }}
-
-      - name: Setup PHP
-        id: setup-php
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 8.1
-          coverage: none
-
-      - name: set redaxo/php-cs-fixer-config to current branch
-        run: composer require redaxo/php-cs-fixer-config:dev-${{ github.head_ref }} --no-scripts --no-update --dev
-
-      - name: allow php-cs-fixer version required by redaxo/php-cs-fixer-config
-        run: composer require friendsofphp/php-cs-fixer:\* --no-scripts --no-update --dev
-
-      - uses: "ramsey/composer-install@v2"
-        if: hashFiles('composer.lock') != ''
-        with:
-          dependency-versions: "highest" # to trigger "composer update" instead of "composer install" but limited to redaxo/php-cs-fixer-config updates only
-          composer-options: "redaxo/php-cs-fixer-config --prefer-dist --no-progress --with-all-dependencies"
-
-      - uses: "ramsey/composer-install@v2"
-        if: hashFiles('composer.lock') == ''
-        with:
-          dependency-versions: "highest" # to trigger "composer update"
-          composer-options: "--prefer-dist --no-progress --with-all-dependencies"
-
-      - name: run php-cs-fixer (dry-run)
-        run: vendor/bin/php-cs-fixer fix -v --ansi --dry-run --diff || exit 0
+        if: github.event.pull_request.draft == false
+        steps:
+            -   uses: actions/checkout@v3
+                with:
+                    repository: ${{ matrix.repo }}
+  
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: 8.1
+                    coverage: none
+  
+            -   name: set redaxo/php-cs-fixer-config to current branch
+                run: composer require redaxo/php-cs-fixer-config:dev-${{ github.head_ref }} --no-scripts --no-update --dev
+  
+            -   name: allow php-cs-fixer version required by redaxo/php-cs-fixer-config
+                run: composer require friendsofphp/php-cs-fixer:\* --no-scripts --no-update --dev
+  
+            -   uses: ramsey/composer-install@v2
+                if: hashFiles('composer.lock') != ''
+                with:
+                    dependency-versions: 'highest' # to trigger 'composer update' instead of 'composer install' but limited to redaxo/php-cs-fixer-config updates only
+                    composer-options: 'redaxo/php-cs-fixer-config --prefer-dist --no-progress --with-all-dependencies'
+  
+            -   uses: ramsey/composer-install@v2
+                if: hashFiles('composer.lock') == ''
+                with:
+                    dependency-versions: 'highest' # to trigger 'composer update'
+                    composer-options: '--prefer-dist --no-progress --with-all-dependencies'
+  
+            -   name: run php-cs-fixer
+                run: vendor/bin/php-cs-fixer check -v --ansi --diff || exit 0

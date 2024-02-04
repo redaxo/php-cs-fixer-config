@@ -46,7 +46,6 @@ class Config extends \PhpCsFixer\Config
             'declare_strict_types' => false,
             'echo_tag_syntax' => ['format' => 'short'],
             'empty_loop_condition' => false,
-            'escape_implicit_backslashes' => true,
             'global_namespace_import' => [
                 'import_constants' => true,
                 'import_functions' => true,
@@ -94,6 +93,7 @@ class Config extends \PhpCsFixer\Config
             'single_line_empty_body' => true,
             'statement_indentation' => false,
             'static_lambda' => true,
+            'string_implicit_backslashes' => ['single_quoted' => 'ignore'],
             'trailing_comma_in_multiline' => [
                 'after_heredoc' => true,
                 'elements' => ['arguments', 'arrays', 'match', 'parameters'],

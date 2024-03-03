@@ -81,6 +81,7 @@ class Config extends \PhpCsFixer\Config
             'php_unit_internal_class' => true,
             'php_unit_test_case_static_method_calls' => ['call_type' => 'self'],
             'phpdoc_align' => false,
+            'phpdoc_array_type' => true,
             'phpdoc_no_package' => false,
             'phpdoc_order' => true,
             'phpdoc_separation' => false,

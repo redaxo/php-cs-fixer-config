@@ -38,7 +38,6 @@ class Config extends \PhpCsFixer\Config
             '@PHP80Migration:risky' => true,
             '@PHPUnit100Migration:risky' => true,
 
-            'align_multiline_comment' => true,
             'array_indentation' => true,
             'blank_line_before_statement' => false,
             'comment_to_phpdoc' => true,
@@ -67,7 +66,6 @@ class Config extends \PhpCsFixer\Config
             'no_unreachable_default_argument_value' => true,
             'no_useless_else' => true,
             'no_useless_return' => true,
-            'nullable_type_declaration_for_default_null_value' => true,
             'operator_linebreak' => false,
             'ordered_class_elements' => ['order' => [
                 'use_trait',

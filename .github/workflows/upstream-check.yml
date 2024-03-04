@@ -6,7 +6,7 @@ on:
 
 jobs:
     upstream_run:
-        name: ${{ matrix.repo }}
+        name: ${{ matrix.repo }}@${{ matrix.brnach }}
         runs-on: ubuntu-latest
         timeout-minutes: 10
 

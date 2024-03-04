@@ -13,7 +13,13 @@ use Redaxo\PhpCsFixerConfig\Fixer\StatementIndentationFixer;
 
 class Config extends \PhpCsFixer\Config
 {
-    public function __construct(string $name = 'REDAXO')
+    /** @var array<string, bool|array<mixed>> */
+    private array $defaultRules;
+
+    /**
+     * @deprecated use `Config::redaxo5()` or `Config::redaxo6()` instead
+     */
+    public function __construct(string $name = 'REDAXO 5')
     {
         parent::__construct($name);
 
@@ -24,12 +30,8 @@ class Config extends \PhpCsFixer\Config
             new NoSemicolonBeforeClosingTagFixer(),
             new StatementIndentationFixer(),
         ]);
-        $this->setRules([]);
-    }
 
-    public function setRules(array $rules): ConfigInterface
-    {
-        $default = [
+        $this->defaultRules = [
             '@PER-CS2.0' => true,
             '@PER-CS2.0:risky' => true,
             '@Symfony' => true,
@@ -107,6 +109,29 @@ class Config extends \PhpCsFixer\Config
             'Redaxo/statement_indentation' => true,
         ];
 
-        return parent::setRules(array_merge($default, $rules));
+        $this->setRules([]);
+    }
+
+    public static function redaxo5(): self
+    {
+        return new self();
+    }
+
+    public static function redaxo6(): self
+    {
+        $config = new self('REDAXO 6');
+
+        $config->defaultRules['general_phpdoc_annotation_remove'] = [
+            'annotations' => ['author', 'package'],
+        ];
+
+        $config->setRules([]);
+
+        return $config;
+    }
+
+    public function setRules(array $rules): ConfigInterface
+    {
+        return parent::setRules(array_merge($this->defaultRules, $rules));
     }
 }

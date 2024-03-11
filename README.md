@@ -15,7 +15,7 @@ $finder = (new PhpCsFixer\Finder())
     ->in(__DIR__)
 ;
 
-return (Redaxo\PhpCsFixerConfig\Config::redaxo5()) // or `::redaxo6`
+return (Redaxo\PhpCsFixerConfig\Config::redaxo5()) // or `::redaxo6()`
     ->setFinder($finder)
 ;
 

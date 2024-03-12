@@ -68,7 +68,6 @@ class Config extends \PhpCsFixer\Config
             'no_unreachable_default_argument_value' => true,
             'no_useless_else' => true,
             'no_useless_return' => true,
-            'operator_linebreak' => false,
             'ordered_class_elements' => ['order' => [
                 'use_trait',
                 'case',

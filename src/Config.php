@@ -46,6 +46,7 @@ class Config extends \PhpCsFixer\Config
             'concat_space' => ['spacing' => 'one'],
             'declare_strict_types' => false,
             'echo_tag_syntax' => ['format' => 'short'],
+            'fully_qualified_strict_types' => ['import_symbols' => true],
             'global_namespace_import' => [
                 'import_constants' => true,
                 'import_functions' => true,

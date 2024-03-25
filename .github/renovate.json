@@ -4,5 +4,11 @@
         "config:best-practices",
         ":disableDependencyDashboard",
         ":semanticCommitsDisabled"
+    ],
+    "packageRules": [
+        {
+            "matchManagers": ["github-actions"],
+            "groupName": "actions"
+        }
     ]
 }

@@ -30,13 +30,13 @@ jobs:
 
         if: github.event.pull_request.draft == false
         steps:
-            -   uses: actions/checkout@v4
+            -   uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
                 with:
                     repository: ${{ matrix.repo }}
                     ref: ${{ matrix.branch }}
   
             -   name: Setup PHP
-                uses: shivammathur/setup-php@v2
+                uses: shivammathur/setup-php@73963f5001e335723c998e4a0125ce060083985c # v2
                 with:
                     php-version: ${{ matrix.php }}
                     coverage: none

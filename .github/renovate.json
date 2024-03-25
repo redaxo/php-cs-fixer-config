@@ -4,11 +4,11 @@
         "config:best-practices",
         ":timezone(Europe/Berlin)",
         ":disableDependencyDashboard",
-        ":semanticCommitsDisabled",
-        "helpers:pinGitHubActionDigestsToSemver"
+        ":semanticCommitsDisabled"
     ],
     "packageRules": [
         {
+            "extends": ["helpers:pinGitHubActionDigestsToSemver"],
             "matchManagers": ["github-actions"],
             "groupName": "actions",
             "schedule": ["on the first day of the month"]

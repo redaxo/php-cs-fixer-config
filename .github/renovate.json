@@ -8,10 +8,11 @@
     ],
     "packageRules": [
         {
-            "extends": ["helpers:pinGitHubActionDigestsToSemver"],
             "matchManagers": ["github-actions"],
             "groupName": "actions",
-            "schedule": ["on the first day of the month"]
+            "schedule": ["on the first day of the month"],
+            "extractVersion": "^(?<version>v\\d+\\.\\d+\\.\\d+)$",
+            "versioning": "regex:^v?(?<major>\\d+)(\\.(?<minor>\\d+)\\.(?<patch>\\d+))?$"
         }
     ]
 }

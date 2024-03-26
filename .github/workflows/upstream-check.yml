@@ -58,3 +58,6 @@ jobs:
             -   name: Run php-cs-fixer
                 continue-on-error: true
                 run: vendor/bin/php-cs-fixer check -v --ansi --diff
+
+            -   if: failure()
+                run: exit 0

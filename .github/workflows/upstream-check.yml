@@ -45,22 +45,15 @@ jobs:
                 run: composer require redaxo/php-cs-fixer-config:dev-main friendsofphp/php-cs-fixer:\* --no-scripts --no-update --dev
 
             -   uses: ramsey/composer-install@0f18aec461938c57720faaf2dba4421bf698cf42 # v3
-#                if: hashFiles('composer.lock') != ''
                 with:
-                    dependency-versions: 'highest' # to trigger 'composer update' instead of 'composer install' but limited to redaxo/php-cs-fixer-config updates only
+                    dependency-versions: 'highest' # to trigger 'composer update' instead of 'composer install'
                     composer-options: ${{ hashFiles('composer.lock') != '' && 'redaxo/php-cs-fixer-config' || '' }} --with-all-dependencies
-
-#            -   uses: ramsey/composer-install@v3
-#                if: hashFiles('composer.lock') == ''
-#                with:
-#                    dependency-versions: 'highest' # to trigger 'composer update'
-#                    composer-options: '--with-all-dependencies'
 
             -   name: Run php-cs-fixer with config from main branch
                 run: vendor/bin/php-cs-fixer fix -v --ansi --diff || exit 0
 
             -   name: Set redaxo/php-cs-fixer-config to current branch
-                run: composer require redaxo/php-cs-fixer-config:dev-${{ github.head_ref }} --no-scripts --no-update --dev
+                run: composer require redaxo/php-cs-fixer-config:dev-${{ github.head_ref }} --no-scripts --dev
 
             -   name: Run php-cs-fixer
                 run: vendor/bin/php-cs-fixer check -v --ansi --diff || exit 0

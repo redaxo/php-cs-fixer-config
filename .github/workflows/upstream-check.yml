@@ -48,7 +48,7 @@ jobs:
 #                if: hashFiles('composer.lock') != ''
                 with:
                     dependency-versions: 'highest' # to trigger 'composer update' instead of 'composer install' but limited to redaxo/php-cs-fixer-config updates only
-                    composer-options: 'redaxo/php-cs-fixer-config --with-all-dependencies'
+                    composer-options: ''${{ hashFiles('composer.lock') != '' && 'redaxo/php-cs-fixer-config' }} --with-all-dependencies'
 
 #            -   uses: ramsey/composer-install@v3
 #                if: hashFiles('composer.lock') == ''

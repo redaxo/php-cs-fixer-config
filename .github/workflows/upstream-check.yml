@@ -56,6 +56,6 @@ jobs:
                 run: composer require redaxo/php-cs-fixer-config:dev-${{ github.head_ref }} --dev --with-all-dependencies --no-scripts --no-interaction --no-progress --ansi
 
             -   name: Run php-cs-fixer
-                run: vendor/bin/php-cs-fixer check -v --ansi --diff || echo "::warning:: Test"
+                run: vendor/bin/php-cs-fixer check -v --ansi --diff || echo "::warning::Test"
 
             -   run: echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY

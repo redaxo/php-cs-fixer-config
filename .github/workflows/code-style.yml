@@ -23,8 +23,6 @@ jobs:
 
             -   name: Composer install
                 uses: ramsey/composer-install@v3
-                with:
-                    composer-options: --ansi --prefer-dist
 
             -   name: Run php-cs-fixer
                 run: vendor/bin/php-cs-fixer check --ansi --diff --format=checkstyle | cs2pr

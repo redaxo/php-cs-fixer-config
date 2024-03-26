@@ -5,7 +5,7 @@ on:
         types: [ opened, synchronize, reopened, ready_for_review ]
 
 jobs:
-    upstream_run:
+    run:
         name: ${{ matrix.repo }}@${{ matrix.branch }}
         runs-on: ubuntu-latest
         timeout-minutes: 10
@@ -56,6 +56,4 @@ jobs:
                 run: composer require redaxo/php-cs-fixer-config:dev-${{ github.head_ref }} --dev --with-all-dependencies --no-scripts --no-interaction --no-progress --ansi
 
             -   name: Run php-cs-fixer
-                run: vendor/bin/php-cs-fixer check -v --ansi --diff || echo "::warning::Test"
-
-            -   run: echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
+                run: vendor/bin/php-cs-fixer check -v --ansi --diff || echo "::warning file=src/Config.php::New changes in ${{ matrix.repo }}@${{ matrix.branch }}."

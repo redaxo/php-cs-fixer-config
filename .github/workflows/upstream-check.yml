@@ -30,7 +30,7 @@ jobs:
                         php: '8.1'
 
         steps:
-            -   name: Checkout ${{ matrix.repo }}@{{ matrix.branch }}
+            -   name: Checkout ${{ matrix.repo }}@${{ matrix.branch }}
                 uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
                 with:
                     repository: ${{ matrix.repo }}

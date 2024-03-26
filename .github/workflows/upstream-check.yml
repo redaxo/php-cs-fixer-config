@@ -42,7 +42,7 @@ jobs:
                     coverage: none
 
             -   name: Set redaxo/php-cs-fixer-config to main branch
-                run: composer require redaxo/php-cs-fixer-config:dev-main friendsofphp/php-cs-fixer:\* --no-scripts --no-update --dev
+                run: composer require redaxo/php-cs-fixer-config:dev-main friendsofphp/php-cs-fixer:\* --dev --no-scripts --no-interaction --no-update --ansi
 
             -   uses: ramsey/composer-install@0f18aec461938c57720faaf2dba4421bf698cf42 # v3
                 with:
@@ -53,7 +53,7 @@ jobs:
                 run: vendor/bin/php-cs-fixer fix -v --ansi --diff || exit 0
 
             -   name: Set redaxo/php-cs-fixer-config to current branch
-                run: composer require redaxo/php-cs-fixer-config:dev-${{ github.head_ref }} --no-scripts --dev
+                run: composer require redaxo/php-cs-fixer-config:dev-${{ github.head_ref }} --dev --with-all-dependencies --no-scripts --no-interaction --no-progress --ansi
 
             -   name: Run php-cs-fixer
                 run: vendor/bin/php-cs-fixer check -v --ansi --diff || exit 0

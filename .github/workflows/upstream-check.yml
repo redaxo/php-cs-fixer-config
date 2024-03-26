@@ -9,6 +9,7 @@ jobs:
         name: ${{ matrix.repo }}@${{ matrix.branch }}
         runs-on: ubuntu-latest
         timeout-minutes: 10
+        if: github.event.pull_request.draft == false
 
         concurrency:
             group: upstream-check-${{github.event_name}}-${{ matrix.repo }}-${{ matrix.branch }}-${{ github.head_ref || github.run_id }}
@@ -28,9 +29,9 @@ jobs:
                         branch: master
                         php: '8.1'
 
-        if: github.event.pull_request.draft == false
         steps:
-            -   uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+            -   name: Checkout ${{ matrix.repo }}@{{ matrix.branch }}
+                uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
                 with:
                     repository: ${{ matrix.repo }}
                     ref: ${{ matrix.branch }}
@@ -44,7 +45,7 @@ jobs:
             -   name: Set redaxo/php-cs-fixer-config to main branch
                 run: composer require redaxo/php-cs-fixer-config:dev-main friendsofphp/php-cs-fixer:\* --dev --no-scripts --no-interaction --no-update --ansi
 
-            -   uses: ramsey/composer-install@0f18aec461938c57720faaf2dba4421bf698cf42 # v3
+            -   uses: ramsey/composer-install@v3
                 with:
                     dependency-versions: 'highest' # to trigger 'composer update' instead of 'composer install'
                     composer-options: ${{ hashFiles('composer.lock') != '' && 'redaxo/php-cs-fixer-config' || '' }} --with-all-dependencies

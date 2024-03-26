@@ -59,7 +59,7 @@ class Config extends \PhpCsFixer\Config
                 'scope' => 'namespaced',
                 'strict' => false,
             ],
-            'no_alternative_syntax' => true,
+            'no_alternative_syntax' => false,
             'no_blank_lines_after_phpdoc' => false,
             'no_superfluous_elseif' => true,
             'no_superfluous_phpdoc_tags' => [

@@ -56,4 +56,5 @@ jobs:
                 run: composer require redaxo/php-cs-fixer-config:dev-${{ github.head_ref }} --dev --with-all-dependencies --no-scripts --no-interaction --no-progress --ansi
 
             -   name: Run php-cs-fixer
-                run: vendor/bin/php-cs-fixer check -v --ansi --diff || exit 0
+                continue-on-error: true
+                run: vendor/bin/php-cs-fixer check -v --ansi --diff

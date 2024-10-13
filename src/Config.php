@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Redaxo\PhpCsFixerConfig;
 
 use PhpCsFixer\ConfigInterface;
+use PhpCsFixer\Runner\Parallel\ParallelConfigFactory;
 use PhpCsFixerCustomFixers\Fixer\MultilinePromotedPropertiesFixer;
 use PhpCsFixerCustomFixers\Fixer\PhpdocSingleLineVarFixer;
 use PhpCsFixerCustomFixers\Fixers;
@@ -24,6 +25,7 @@ class Config extends \PhpCsFixer\Config
         parent::__construct($name);
 
         $this->setUsingCache(true);
+        $this->setParallelConfig(ParallelConfigFactory::detect());
         $this->setRiskyAllowed(true);
         $this->registerCustomFixers(new Fixers());
         $this->registerCustomFixers([

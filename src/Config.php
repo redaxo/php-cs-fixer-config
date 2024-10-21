@@ -94,6 +94,7 @@ class Config extends \PhpCsFixer\Config
             'psr_autoloading' => false,
             'semicolon_after_instruction' => false,
             'single_line_empty_body' => true,
+            'single_line_throw' => false,
             'statement_indentation' => false,
             'static_lambda' => true,
             'string_implicit_backslashes' => ['single_quoted' => 'ignore'],

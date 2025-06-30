@@ -15,6 +15,9 @@ jobs:
             group: upstream-check-${{github.event_name}}-${{ matrix.repo }}-${{ matrix.branch }}-${{ github.head_ref || github.run_id }}
             cancel-in-progress: true
 
+        env:
+            PHP_CS_FIXER_IGNORE_ENV: 1
+
         strategy:
             fail-fast: false
             matrix:
@@ -24,7 +27,7 @@ jobs:
                         php: '8.1'
                     -   repo: redaxo/redaxo
                         branch: 6.x
-                        php: '8.3'
+                        php: '8.4'
                     -   repo: yakamara/yform
                         branch: master
                         php: '8.1'

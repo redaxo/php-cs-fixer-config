@@ -24,7 +24,7 @@ jobs:
                         php: '8.1'
                     -   repo: redaxo/redaxo
                         branch: 6.x
-                        php: '8.3'
+                        php: '8.4'
                     -   repo: yakamara/yform
                         branch: master
                         php: '8.1'

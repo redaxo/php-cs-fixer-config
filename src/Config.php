@@ -6,7 +6,6 @@ namespace Redaxo\PhpCsFixerConfig;
 
 use PhpCsFixer\ConfigInterface;
 use PhpCsFixer\Runner\Parallel\ParallelConfigFactory;
-use PhpCsFixerCustomFixers\Fixer\MultilinePromotedPropertiesFixer;
 use PhpCsFixerCustomFixers\Fixer\PhpdocSingleLineVarFixer;
 use PhpCsFixerCustomFixers\Fixers;
 use Redaxo\PhpCsFixerConfig\Fixer\NoSemicolonBeforeClosingTagFixer;

@@ -18,7 +18,7 @@
     "require": {
         "php": "^8.1",
         "friendsofphp/php-cs-fixer": "3.82.2",
-        "kubawerlos/php-cs-fixer-custom-fixers": "3.25.0"
+        "kubawerlos/php-cs-fixer-custom-fixers": "3.30.1"
     },
     "autoload": {
         "psr-4": {

@@ -57,6 +57,7 @@ class Config extends \PhpCsFixer\Config
             'heredoc_to_nowdoc' => true,
             'method_argument_space' => ['on_multiline' => 'ignore'],
             'multiline_comment_opening_closing' => true,
+            'multiline_promoted_properties' => ['keep_blank_lines' => true],
             'native_constant_invocation' => [
                 'scope' => 'namespaced',
                 'strict' => false,
@@ -105,7 +106,6 @@ class Config extends \PhpCsFixer\Config
             'use_arrow_functions' => false,
             'void_return' => false,
 
-            MultilinePromotedPropertiesFixer::name() => ['keep_blank_lines' => true],
             PhpdocSingleLineVarFixer::name() => true,
 
             'Redaxo/no_semicolon_before_closing_tag' => true,

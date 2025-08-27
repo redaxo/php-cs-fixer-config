@@ -34,13 +34,13 @@ jobs:
 
         steps:
             -   name: Checkout ${{ matrix.repo }}@${{ matrix.branch }}
-                uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+                uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
                 with:
                     repository: ${{ matrix.repo }}
                     ref: ${{ matrix.branch }}
 
             -   name: Setup PHP
-                uses: shivammathur/setup-php@0f7f1d08e3e32076e51cae65eb0b0c871405b16e # v2
+                uses: shivammathur/setup-php@ec406be512d7077f68eed36e63f4d91bc006edc4 # v2
                 with:
                     php-version: ${{ matrix.php }}
                     coverage: none

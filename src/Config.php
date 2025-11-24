@@ -19,7 +19,7 @@ class Config extends \PhpCsFixer\Config
     /**
      * @deprecated use `Config::redaxo5()` or `Config::redaxo6()` instead
      */
-    public function __construct(string $name = 'REDAXO 5', string $phpMigration = '81', string $phpMigrationRisky = '80')
+    public function __construct(string $name = 'REDAXO 5', string $phpMigration = '8x1', string $phpMigrationRisky = '8x0')
     {
         parent::__construct($name);
 
@@ -33,13 +33,13 @@ class Config extends \PhpCsFixer\Config
         ]);
 
         $this->defaultRules = [
-            '@PER-CS2.0' => true,
-            '@PER-CS2.0:risky' => true,
+            '@PER-CS2x0' => true,
+            '@PER-CS2x0:risky' => true,
             '@Symfony' => true,
             '@Symfony:risky' => true,
             '@PHP' . $phpMigration . 'Migration' => true,
             '@PHP' . $phpMigrationRisky . 'Migration:risky' => true,
-            '@PHPUnit100Migration:risky' => true,
+            '@PHPUnit10x0Migration:risky' => true,
 
             'array_indentation' => true,
             'blank_line_before_statement' => false,
@@ -121,7 +121,7 @@ class Config extends \PhpCsFixer\Config
 
     public static function redaxo6(): self
     {
-        $config = new self('REDAXO 6', '84', '82');
+        $config = new self('REDAXO 6', '8x4', '8x2');
 
         $config->defaultRules['general_phpdoc_annotation_remove'] = [
             'annotations' => ['author', 'package'],

@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": "^8.1",
-        "friendsofphp/php-cs-fixer": "3.92.3",
+        "friendsofphp/php-cs-fixer": "3.94.2",
         "kubawerlos/php-cs-fixer-custom-fixers": "3.35.1"
     },
     "autoload": {

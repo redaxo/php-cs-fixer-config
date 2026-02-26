@@ -12,6 +12,6 @@ $finder = (new Finder())
     ])
 ;
 
-return (new Config())
+return Config::redaxo5()
     ->setFinder($finder)
 ;

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Redaxo\PhpCsFixerConfig;
 
 use PhpCsFixer\ConfigInterface;
-use PhpCsFixer\Runner\Parallel\ParallelConfigFactory;
 use Redaxo\PhpCsFixerConfig\Fixer\NoSemicolonBeforeClosingTagFixer;
 use Redaxo\PhpCsFixerConfig\Fixer\StatementIndentationFixer;
 
@@ -14,13 +13,11 @@ class Config extends \PhpCsFixer\Config
     /** @var array<string, bool|array<mixed>> */
     private array $defaultRules;
 
-    /** @deprecated use `Config::redaxo5()` or `Config::redaxo6()` instead */
-    public function __construct(string $name = 'REDAXO 5', string $phpMigration = '8x1', string $phpMigrationRisky = '8x0')
+    private function __construct(string $name, string $phpMigration)
     {
         parent::__construct($name);
 
         $this->setUsingCache(true);
-        $this->setParallelConfig(ParallelConfigFactory::detect());
         $this->setRiskyAllowed(true);
         $this->registerCustomFixers([
             new NoSemicolonBeforeClosingTagFixer(),
@@ -33,7 +30,7 @@ class Config extends \PhpCsFixer\Config
             '@Symfony' => true,
             '@Symfony:risky' => true,
             '@PHP' . $phpMigration . 'Migration' => true,
-            '@PHP' . $phpMigrationRisky . 'Migration:risky' => true,
+            '@PHP' . $phpMigration . 'Migration:risky' => true,
             '@PHPUnit10x0Migration:risky' => true,
 
             'array_indentation' => true,
@@ -118,12 +115,15 @@ class Config extends \PhpCsFixer\Config
 
     public static function redaxo5(): self
     {
-        return new self();
+        $config = new self('REDAXO 5', '8x3');
+        $config->setRules([]);
+
+        return $config;
     }
 
     public static function redaxo6(): self
     {
-        $config = new self('REDAXO 6', '8x4', '8x2');
+        $config = new self('REDAXO 6', '8x4');
 
         $config->defaultRules['general_phpdoc_annotation_remove'] = [
             'annotations' => ['author', 'package'],

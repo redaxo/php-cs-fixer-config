@@ -6,8 +6,6 @@ namespace Redaxo\PhpCsFixerConfig;
 
 use PhpCsFixer\ConfigInterface;
 use PhpCsFixer\Runner\Parallel\ParallelConfigFactory;
-use PhpCsFixerCustomFixers\Fixer\PhpdocSingleLineVarFixer;
-use PhpCsFixerCustomFixers\Fixers;
 use Redaxo\PhpCsFixerConfig\Fixer\NoSemicolonBeforeClosingTagFixer;
 use Redaxo\PhpCsFixerConfig\Fixer\StatementIndentationFixer;
 
@@ -16,9 +14,7 @@ class Config extends \PhpCsFixer\Config
     /** @var array<string, bool|array<mixed>> */
     private array $defaultRules;
 
-    /**
-     * @deprecated use `Config::redaxo5()` or `Config::redaxo6()` instead
-     */
+    /** @deprecated use `Config::redaxo5()` or `Config::redaxo6()` instead */
     public function __construct(string $name = 'REDAXO 5', string $phpMigration = '8x1', string $phpMigrationRisky = '8x0')
     {
         parent::__construct($name);
@@ -26,7 +22,6 @@ class Config extends \PhpCsFixer\Config
         $this->setUsingCache(true);
         $this->setParallelConfig(ParallelConfigFactory::detect());
         $this->setRiskyAllowed(true);
-        $this->registerCustomFixers(new Fixers());
         $this->registerCustomFixers([
             new NoSemicolonBeforeClosingTagFixer(),
             new StatementIndentationFixer(),
@@ -86,6 +81,15 @@ class Config extends \PhpCsFixer\Config
             'php_unit_test_case_static_method_calls' => ['call_type' => 'self'],
             'phpdoc_align' => false,
             'phpdoc_array_type' => true,
+            'phpdoc_line_span' => [
+                'class' => null,
+                'trait_import' => 'single',
+                'const' => 'single',
+                'case' => 'single',
+                'property' => 'single',
+                'method' => 'single',
+                'other' => 'single',
+            ],
             'phpdoc_no_package' => false,
             'phpdoc_order' => true,
             'phpdoc_separation' => false,
@@ -104,8 +108,6 @@ class Config extends \PhpCsFixer\Config
             ],
             'use_arrow_functions' => false,
             'void_return' => false,
-
-            PhpdocSingleLineVarFixer::name() => true,
 
             'Redaxo/no_semicolon_before_closing_tag' => true,
             'Redaxo/statement_indentation' => true,

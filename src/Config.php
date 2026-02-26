@@ -25,13 +25,13 @@ class Config extends \PhpCsFixer\Config
         ]);
 
         $this->defaultRules = [
-            '@PER-CS2x0' => true,
-            '@PER-CS2x0:risky' => true,
+            '@PER-CS' => true,
+            '@PER-CS:risky' => true,
             '@Symfony' => true,
             '@Symfony:risky' => true,
             '@PHP' . $phpMigration . 'Migration' => true,
             '@PHP' . $phpMigration . 'Migration:risky' => true,
-            '@PHPUnit10x0Migration:risky' => true,
+            '@PHPUnit11x0Migration:risky' => true,
 
             'array_indentation' => true,
             'blank_line_before_statement' => false,

@@ -11,11 +11,15 @@ Example `.php-cs-fixer.dist.php`:
 ```php
 <?php
 
-$finder = (new PhpCsFixer\Finder())
+use PhpCsFixer\Finder;
+use Redaxo\PhpCsFixerConfig\Config;
+
+
+$finder = (new Finder())
     ->in(__DIR__)
 ;
 
-return (Redaxo\PhpCsFixerConfig\Config::redaxo5()) // or `::redaxo6()`
+return Config::redaxo5() // or `::redaxo6()`
     ->setFinder($finder)
 ;
 

@@ -45,7 +45,7 @@ jobs:
             -   name: Set redaxo/php-cs-fixer-config to main branch
                 run: composer require redaxo/php-cs-fixer-config:dev-main friendsofphp/php-cs-fixer:\* --dev --no-scripts --no-interaction --no-update --ansi
 
-            -   uses: ramsey/composer-install@a8d0d959dab41457692a5e2041bd9b757a119e3f # 3.2.1
+            -   uses: ramsey/composer-install@65e4f84970763564f46a70b8a54b90d033b3bdda # 4.0.0
                 with:
                     dependency-versions: 'highest' # to trigger 'composer update' instead of 'composer install'
                     composer-options: ${{ hashFiles('composer.lock') != '' && 'redaxo/php-cs-fixer-config' || '' }} --with-all-dependencies

@@ -123,7 +123,7 @@ class Config extends \PhpCsFixer\Config
 
     public static function redaxo6(): self
     {
-        $config = new self('REDAXO 6', '8x4');
+        $config = new self('REDAXO 6', '8x5');
 
         $config->defaultRules['general_phpdoc_annotation_remove'] = [
             'annotations' => ['author', 'package'],

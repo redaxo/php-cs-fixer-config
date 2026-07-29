@@ -15,6 +15,10 @@ jobs:
             group: upstream-check-${{github.event_name}}-${{ matrix.repo }}-${{ matrix.branch }}-${{ github.head_ref || github.run_id }}
             cancel-in-progress: true
 
+        env:
+            # authenticate the GitHub API calls of composer's VCS driver (see below) against the rate limit
+            COMPOSER_AUTH: '{"github-oauth":{"github.com":"${{ github.token }}"}}'
+
         strategy:
             fail-fast: false
             matrix:
@@ -42,6 +46,12 @@ jobs:
                     php-version: ${{ matrix.php }}
                     coverage: none
 
+            # Packagist does not create dev versions for bot branches (renovate/*, dependabot/*, ...) anymore,
+            # see https://github.com/composer/packagist/pull/1783. Resolving the package straight from git
+            # makes every branch requirable again, including the head branch of renovate PRs.
+            -   name: Resolve redaxo/php-cs-fixer-config from git instead of packagist
+                run: composer config repositories.redaxo-php-cs-fixer-config vcs https://github.com/redaxo/php-cs-fixer-config --no-interaction --ansi
+
             -   name: Set redaxo/php-cs-fixer-config to main branch
                 run: composer require redaxo/php-cs-fixer-config:dev-main friendsofphp/php-cs-fixer:\* --dev --no-scripts --no-interaction --no-update --ansi
 
@@ -54,7 +64,9 @@ jobs:
                 run: vendor/bin/php-cs-fixer fix -v --ansi --diff || exit 0
 
             -   name: Set redaxo/php-cs-fixer-config to current branch
-                run: composer require redaxo/php-cs-fixer-config:dev-${{ github.head_ref }} --dev --with-all-dependencies --no-scripts --no-interaction --no-progress --ansi
+                env:
+                    HEAD_REF: ${{ github.head_ref }}
+                run: composer require "redaxo/php-cs-fixer-config:dev-$HEAD_REF" --dev --with-all-dependencies --no-scripts --no-interaction --no-progress --ansi
 
             -   name: Run php-cs-fixer
                 run: vendor/bin/php-cs-fixer check -v --ansi --diff || echo "::warning file=src/Config.php::New changes in ${{ matrix.repo }}@${{ matrix.branch }}."

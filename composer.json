@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": "^8.3",
-        "friendsofphp/php-cs-fixer": "3.95.17"
+        "friendsofphp/php-cs-fixer": "3.95.21"
     },
     "autoload": {
         "psr-4": {
